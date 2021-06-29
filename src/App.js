@@ -4,6 +4,14 @@ import Navbar from "./navbar/navbar";
 import Content from "./content/Content";
 
 const GlobalStyles = createGlobalStyle`
+  *{
+    margin:0;
+    padding:0;
+    outline:0;
+    box-sizing: border-box;
+    font-family: 'Roboto Slab',serif;
+    text-decoration: none;
+  }
   body{
     min-height:90vh;
     width:100%;

@@ -51,7 +51,7 @@ export default function Content()
             <Router>
                 <Switch>
                     <Route exact path="/" component={()=><Countries countries={allCountries}/>}/>
-                    <Route path="/country/:name" component={CountryDetails} />
+                    <Route path="/country/:name" component={()=><CountryDetails countries={allCountries}/>} />
                 </Switch>
             </Router>
         )

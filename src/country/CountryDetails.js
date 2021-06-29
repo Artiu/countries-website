@@ -1,4 +1,4 @@
-import { Link,useLocation } from "react-router-dom";
+import { Link,useParams } from "react-router-dom";
 import styled from "styled-components";
 import arrow from "./arrow.svg";
 
@@ -19,10 +19,9 @@ const StyledLink = styled(Link)`
 `
 const Flag = styled.img`
     width:30%;
-    float:left;
 `
 const InfoContainer = styled.div`
-    width:30%;
+    width:40%;
     color:${props=>props.theme.textColor}
 `
 const Name = styled.p`
@@ -55,7 +54,7 @@ const Text = styled.span`
 const BorderCountries = styled.div`
     margin-top:10%;
     display:grid;
-    grid-template-columns:1fr 25% 25% 25%;
+    grid-template-columns:1fr 1fr 1fr 1fr;
     grid-auto-rows:40px;
 `
 const Country = styled(Link)`
@@ -71,10 +70,10 @@ const Country = styled(Link)`
     justify-content:center;
 `
 
-export default function CountryDetails()
+export default function CountryDetails(props)
 {
-    let location = useLocation();
-    let item = location.data.item;
+    let {name} = useParams();
+    let item = props.countries.find((el)=>el.name===name);
     return(
         <>
             <StyledLink to="/"><SmallImage src={arrow}/>Back</StyledLink>
@@ -97,10 +96,12 @@ export default function CountryDetails()
                         </Right>
                     </Data>
                     <BorderCountries>
-                        <Header>Border Countries:</Header>{item.borders.map((el)=>{
-                            return (
-                                <Country to={"/country/"+item.name} key={item.name}>{el}</Country>
-                            )
+                        <Header>Border Countries:</Header>
+                        {item.borders.map((el)=>{
+                                const object = props.countries.find((item)=>item.alpha3Code===el);
+                                return (
+                                    <Country to={"/country/"+object.name} key={object.name}>{object.name}</Country>
+                                )
                         })}
                     </BorderCountries>
                 </InfoContainer>
