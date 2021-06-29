@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const CountryDiv = styled.div`
-    width:21%;
+    width:300px;
     height:40vh;
     margin-top:5vh;
     background-color:${props=>props.theme.firstBgColor};
@@ -13,13 +13,12 @@ const Flag = styled.img`
 `
 const Name = styled.p`
     font-size:1.2rem;
-    padding:20px;
+    padding:10px 20px;
     font-weight:bold;
 `
 const Header = styled.p`
     font-weight:bold;
     margin-left:20px;
-    margin-top:5px;
 `
 const Text = styled.span`
     font-weight:100;

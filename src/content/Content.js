@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import Country from "../country/Country";
 import SearchBar from '../searchbar/SearchBar';
 
@@ -32,7 +33,12 @@ export default function Content()
                 <SearchBar/>
                 <CountryContainer>
                     {countries.map((item)=>(
-                        <Country key={item.name} data={item}/>
+                        <Link to={{
+                            pathname:"/country/"+item.name,
+                            data: {item}
+                        }} key={item.name}>
+                            <Country data={item}/>
+                        </Link>
                     ))}
                 </CountryContainer>
             </Main>
