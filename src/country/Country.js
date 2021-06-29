@@ -1,0 +1,39 @@
+import styled from "styled-components";
+
+const CountryDiv = styled.div`
+    width:21%;
+    height:40vh;
+    margin-top:5vh;
+    background-color:${props=>props.theme.firstBgColor};
+    color:${props=>props.theme.textColor};
+`
+const Flag = styled.img`
+    width:100%;
+    height:50%;
+`
+const Name = styled.p`
+    font-size:1.2rem;
+    padding:20px;
+    font-weight:bold;
+`
+const Header = styled.p`
+    font-weight:bold;
+    margin-left:20px;
+    margin-top:5px;
+`
+const Text = styled.span`
+    font-weight:100;
+    font-size:1rem;
+`
+export default function Country(props)
+{
+    return(
+        <CountryDiv>
+            <Flag src={props.data.flag} alt="flag"/>
+            <Name>{props.data.name}</Name>
+            <Header>Population: <Text>{props.data.population}</Text></Header>
+            <Header>Region: <Text>{props.data.region}</Text></Header>
+            <Header>Capital: <Text>{props.data.capital}</Text></Header>
+        </CountryDiv>
+    )
+}
