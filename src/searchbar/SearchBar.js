@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import loupe from './loupe.svg';
 
@@ -49,13 +50,18 @@ const Select = styled.select`
 const Option = styled.option`
 
 `
-export default function SearchBar()
+export default function SearchBar(props)
 {
+    const [value,setValue] = useState('');
+    const queryChanged = (value) =>{
+        props.onChange(value);
+        setValue(value);
+    }
     return(
         <Container>
             <InputContainer>
                 <Image src={loupe} alt="loupe"></Image>
-                <Input/>
+                <Input value={value} onChange={(e) => queryChanged(e.target.value)}/>
             </InputContainer>
             <Select>
                 <Option>Filter by Region</Option>
