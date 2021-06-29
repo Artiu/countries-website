@@ -6,17 +6,22 @@ import SearchBar from '../searchbar/SearchBar';
 import CountryDetails from "../country/CountryDetails";
 
 const CountryContainer = styled.div`
-    display:flex;
-    justify-content:space-around;
-    flex-wrap:wrap;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
 `
 export function Countries(props)
 {
+    const [countriesToShow, setToShow] = useState(props.countries);
+    const changeQuery = (query,option) =>
+    {
+        if(option) setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(query.toLowerCase()) && el.region === option));
+        else setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(query.toLowerCase())))
+    }
     return(
     <>
-        <SearchBar onChange={props.onChange} />
+        <SearchBar onChange={changeQuery} />
         <CountryContainer>
-            {props.countries.map((item)=>(
+            {countriesToShow.map((item)=>(
             <Link to={{
                 pathname:"/country/"+item.name,
                     data: {item}
@@ -32,26 +37,20 @@ export default function Content()
 {
     const [allCountries, setCountries] = useState();
     const [isLoaded, setStatus] = useState(false);
-    const [countriesToShow, setToShow] = useState('');
     useEffect(()=>{
         fetch("https://restcountries.eu/rest/v2/all")
         .then((response)=>response.json())
         .then((res)=>{
             setCountries(res);
-            setToShow(res);
             setStatus(true);
         })
     },[]);
-    const changeQuery = (value) =>
-    {
-        setToShow(allCountries.filter((el)=> el.name.toLowerCase().startsWith(value) === true))
-    }
     if(isLoaded)
     {
         return(
             <Router>
                 <Switch>
-                    <Route exact path="/" component={()=><Countries countries={countriesToShow} onChange={changeQuery}/>}/>
+                    <Route exact path="/" component={()=><Countries countries={allCountries}/>}/>
                     <Route path="/country/:name" component={CountryDetails} />
                 </Switch>
             </Router>

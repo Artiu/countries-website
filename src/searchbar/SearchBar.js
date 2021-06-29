@@ -52,24 +52,33 @@ const Option = styled.option`
 `
 export default function SearchBar(props)
 {
-    const [value,setValue] = useState('');
-    const queryChanged = (value) =>{
-        props.onChange(value);
-        setValue(value);
+    const [query,setQuery] = useState('');
+    const [option,setOption] = useState('');
+    const filterChanged = (value,type) =>{
+        if(type === "query")
+        {
+            setQuery(value);
+            props.onChange(value,option);
+        }
+        if(type === "option")
+        {
+            setOption(value);
+            props.onChange(query,value);
+        }
     }
     return(
         <Container>
             <InputContainer>
                 <Image src={loupe} alt="loupe"></Image>
-                <Input value={value} onChange={(e) => queryChanged(e.target.value)}/>
+                <Input value={query} onChange={(e) => filterChanged(e.target.value,"query")}/>
             </InputContainer>
-            <Select>
-                <Option>Filter by Region</Option>
-                <Option>Africa</Option>
-                <Option>America</Option>
-                <Option>Asia</Option>
-                <Option>Europe</Option>
-                <Option>Oceania</Option>
+            <Select onChange={(e)=> filterChanged(e.target.value,"option")}>
+                <Option value="">Filter by Region</Option>
+                <Option value="Africa">Africa</Option>
+                <Option value="Americas">America</Option>
+                <Option value="Asia">Asia</Option>
+                <Option value="Europe">Europe</Option>
+                <Option value="Oceania">Oceania</Option>
             </Select>
         </Container>
     )

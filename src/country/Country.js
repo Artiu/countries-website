@@ -4,6 +4,8 @@ const CountryDiv = styled.div`
     width:300px;
     height:40vh;
     margin-top:5vh;
+    margin-left:auto;
+    margin-right:auto;
     background-color:${props=>props.theme.firstBgColor};
     color:${props=>props.theme.textColor};
 `
