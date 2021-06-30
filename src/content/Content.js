@@ -14,12 +14,30 @@ export function Countries(props)
     const [countriesToShow, setToShow] = useState(props.countries);
     const changeQuery = (query,option) =>
     {
-        if(option) setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(query.toLowerCase()) && el.region === option));
-        else setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(query.toLowerCase())))
+        if(option)
+        {
+            setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(query.toLowerCase()) && el.region === option));
+            props.setOption(option);
+        }
+        else
+        {
+            setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(query.toLowerCase())));
+            props.setQuery(query);
+        }
     }
+    useEffect(()=>{
+        if(props.optionValue)
+        {
+            setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(props.queryValue.toLowerCase()) && el.region === props.optionValue));
+        }
+        else
+        {
+            setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(props.queryValue.toLowerCase())));
+        }
+    },[props.countries,props.optionValue,props.queryValue])
     return(
     <>
-        <SearchBar onChange={changeQuery} />
+        <SearchBar onChange={changeQuery} firstQuery={props.queryValue} firstOption={props.optionValue}/>
         <CountryContainer>
             {countriesToShow.map((item)=>(
             <Link to={{
@@ -37,6 +55,16 @@ export default function Content()
 {
     const [allCountries, setCountries] = useState();
     const [isLoaded, setStatus] = useState(false);
+    let queryValue = '';
+    let optionValue = '';
+    const setQueryValue = (value) =>
+    {
+        queryValue = value;
+    }
+    const setOptionValue = (value) =>
+    {
+        optionValue = value;
+    }
     useEffect(()=>{
         fetch("https://restcountries.eu/rest/v2/all")
         .then((response)=>response.json())
@@ -50,7 +78,7 @@ export default function Content()
         return(
             <Router>
                 <Switch>
-                    <Route exact path="/" component={()=><Countries countries={allCountries}/>}/>
+                    <Route exact path="/" component={()=><Countries countries={allCountries} queryValue={queryValue} setQuery = {setQueryValue} optionValue = {optionValue} setOption = {setOptionValue}/>}/>
                     <Route path="/country/:name" component={()=><CountryDetails countries={allCountries}/>} />
                 </Switch>
             </Router>

@@ -1,5 +1,6 @@
-import { darkTheme } from "./themes";
+import { darkTheme, lightTheme } from "./themes";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
+import {useEffect, useState} from 'react';
 import Navbar from "./navbar/navbar";
 import Content from "./content/Content";
 
@@ -19,10 +20,18 @@ const GlobalStyles = createGlobalStyle`
   }
 `
 function App() {
+  const [isDark,setTheme] = useState(true);
+  useEffect(()=>{
+    if(localStorage.getItem("theme")) setTheme(JSON.parse(localStorage.getItem("theme")))
+  },[]);
+  const changeTheme = () =>{
+    localStorage.setItem("theme",!isDark);
+    setTheme(!isDark);
+  }
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
       <GlobalStyles/>
-      <Navbar/>
+      <Navbar changeTheme = {changeTheme} theme = {isDark}/>
       <Content/>
     </ThemeProvider>
   );

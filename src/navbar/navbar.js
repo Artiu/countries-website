@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import moon from './moon.svg';
+import sun from './sun.svg';
 
 const Nav = styled.div`
     position:sticky;
@@ -23,24 +24,21 @@ const Mode = styled.button`
     font-size:1rem;
     cursor:pointer;
     color:${props=>props.theme.textColor};
-    &::before
-    {
-        content:"";
-        background:url(${moon});
-        width:1rem;
-        height:1rem;
-        position:absolute;
-        top:0.25rem;
-        left:-1.5rem;
-    }
     `
+const Image = styled.img`
+    width:1rem;
+    height:1rem;
+    position:absolute;
+    top:0.25rem;
+    left:-1.5rem;
+`
 
-export default function Navbar()
+export default function Navbar(props)
 {
     return(
         <Nav>
             <Title>Where in the world?</Title>
-            <Mode>Dark mode</Mode>
+            <Mode onClick={()=>{props.changeTheme()}}><Image src={props.theme ? moon : sun}/>{props.theme ? "Dark theme":"Light theme"}</Mode>
         </Nav>
     )
 }

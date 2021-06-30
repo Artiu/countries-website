@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import loupe from './loupe.svg';
+import arrow from './arrow.svg';
 
 const Container = styled.div`
     width:100%;
@@ -40,20 +41,26 @@ const Image = styled.img`
     margin-left:5px;
 `
 const Select = styled.select`
-    height:60%;
+    height:3rem;
     width:15%;
+    border:none;
     border-radius:10px;
-    padding:15px;
-    background-color:${props=>props.theme.firstBgColor};
+    padding-left:20px;
     color:${props=>props.theme.textColor};
+    appearance:none;
+    background:url(${arrow});
+    background-repeat:no-repeat;
+    background-size:5%;
+    background-position:96% 50%;
+    background-color:${props=>props.theme.firstBgColor};
 `
 const Option = styled.option`
-
 `
+
 export default function SearchBar(props)
 {
-    const [query,setQuery] = useState('');
-    const [option,setOption] = useState('');
+    const [query,setQuery] = useState(props.firstQuery||'');
+    const [option,setOption] = useState(props.firstOption||'');
     const filterChanged = (value,type) =>{
         if(type === "query")
         {
@@ -72,7 +79,7 @@ export default function SearchBar(props)
                 <Image src={loupe} alt="loupe"></Image>
                 <Input value={query} onChange={(e) => filterChanged(e.target.value,"query")}/>
             </InputContainer>
-            <Select onChange={(e)=> filterChanged(e.target.value,"option")}>
+            <Select value={option} onChange={(e)=> filterChanged(e.target.value,"option")}>
                 <Option value="">Filter by Region</Option>
                 <Option value="Africa">Africa</Option>
                 <Option value="Americas">America</Option>

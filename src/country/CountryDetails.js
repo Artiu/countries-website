@@ -9,7 +9,7 @@ const Container = styled.div`
     margin-top:3%;
 `
 const StyledLink = styled(Link)`
-    color:white;
+    color:${props=>props.theme.textColor};
     display:flex;
     align-items:center;
     padding:10px 30px;
@@ -59,7 +59,7 @@ const BorderCountries = styled.div`
 `
 const Country = styled(Link)`
     display:block;
-    color:white;
+    color:${props=>props.theme.textColor};
     background-color:${props=>props.theme.firstBgColor};
     width:100px;
     height:30px;
