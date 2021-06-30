@@ -5,7 +5,7 @@ import arrow from './arrow.svg';
 
 const Container = styled.div`
     width:100%;
-    height:10vh;
+    height:15vh;
     padding:0 50px;
     display:flex;
     justify-content:space-between;
@@ -27,13 +27,14 @@ const Input = styled.input.attrs({
     }
 `
 const InputContainer = styled.div`
-    width:20%;
-    height:50%;
+    width:400px;
+    height:3rem;
     border-radius:10px;
     background-color:${props=>props.theme.firstBgColor};
     color:${props=>props.theme.textColor};
     display:flex;
     align-items:center;
+    box-shadow: 2px 2px 20px 5px rgba(0,0,0,0.1);
 `
 const Image = styled.img`
     width:10%;
@@ -42,11 +43,12 @@ const Image = styled.img`
 `
 const Select = styled.select`
     height:3rem;
-    width:15%;
+    width:200px;
     border:none;
     border-radius:10px;
     padding-left:20px;
     color:${props=>props.theme.textColor};
+    box-shadow: 2px 2px 20px 5px rgba(0,0,0,0.1);
     appearance:none;
     background:url(${arrow});
     background-repeat:no-repeat;

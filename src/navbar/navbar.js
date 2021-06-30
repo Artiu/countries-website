@@ -12,6 +12,7 @@ const Nav = styled.div`
     align-items:center;
     background-color:${props=>props.theme.firstBgColor};
     color:${props=>props.theme.textColor};
+    box-shadow: 2px 2px 20px 5px rgba(0,0,0,0.1);
 `
 const Title = styled.p`
     font-size:1.5rem;

@@ -16,6 +16,8 @@ const StyledLink = styled(Link)`
     background-color:${props=>props.theme.firstBgColor};
     width:fit-content;
     margin:3% 0 0 10%;
+    box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.26);
+    border-radius:3px;
 `
 const Flag = styled.img`
     width:30%;
@@ -68,6 +70,8 @@ const Country = styled(Link)`
     display:flex;
     align-items:center;
     justify-content:center;
+    box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.1);
+    border-radius:3px;
 `
 
 export default function CountryDetails(props)

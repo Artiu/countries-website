@@ -4,10 +4,9 @@ const CountryDiv = styled.div`
     width:300px;
     height:40vh;
     margin-top:5vh;
-    margin-left:auto;
-    margin-right:auto;
     background-color:${props=>props.theme.firstBgColor};
-    color:${props=>props.theme.textColor};
+    color:${props=>props.theme.textColor}; 
+    box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.26);
 `
 const Flag = styled.img`
     width:100%;

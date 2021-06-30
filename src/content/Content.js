@@ -9,6 +9,11 @@ const CountryContainer = styled.div`
     display:grid;
     grid-template-columns:1fr 1fr 1fr 1fr;
 `
+const StyledLink = styled(Link)`
+    width:fit-content;
+    margin-left:auto;
+    margin-right:auto;
+`
 export function Countries(props)
 {
     const [countriesToShow, setToShow] = useState(props.countries);
@@ -41,12 +46,9 @@ export function Countries(props)
         <SearchBar onChange={changeQuery} firstQuery={props.queryValue} firstOption={props.optionValue}/>
         <CountryContainer>
             {countriesToShow.map((item)=>(
-            <Link to={{
-                pathname:"/country/"+item.name,
-                    data: {item}
-                }} key={item.name}>
+            <StyledLink to={"/country/"+item.name} key={item.name}>
             <Country data={item}/>
-            </Link>
+            </StyledLink>
             ))}
         </CountryContainer>
     </>
