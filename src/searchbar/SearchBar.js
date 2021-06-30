@@ -9,6 +9,10 @@ const Container = styled.div`
     display:flex;
     justify-content:space-between;
     align-items:center;
+    @media (max-width:500px)
+    {
+        padding:0 10px;
+    }
 `
 const Input = styled.input.attrs({
     placeholder:"Search for a country...",

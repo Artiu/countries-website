@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const CountryDiv = styled.div`
     width:300px;
-    height:40vh;
+    height:350px;
     margin-top:5vh;
     background-color:${props=>props.theme.firstBgColor};
     color:${props=>props.theme.textColor}; 

@@ -5,7 +5,12 @@ const Container = styled.div`
     display:flex;
     justify-content:space-around;
     align-items:center;
+    width:fit-content;
     margin-top:3%;
+    @media (max-width:900px)
+    {
+        flex-direction:column;
+    }
 `
 const StyledLink = styled(Link)`
     color:${props=>props.theme.textColor};
@@ -20,15 +25,29 @@ const StyledLink = styled(Link)`
 `
 const Flag = styled.img`
     width:30%;
+    @media (max-width:900px)
+    {
+        margin-top:5%;
+        width:60%;
+    }
 `
 const InfoContainer = styled.div`
     width:40%;
-    color:${props=>props.theme.textColor}
+    color:${props=>props.theme.textColor};
+    @media (max-width:900px)
+    {
+        width:90%;
+    }
 `
 const Name = styled.p`
     font-size:2rem;
     font-weight:bold;
     margin-bottom:2rem;
+    margin-left:20px;
+    @media (max-width:900px)
+    {
+        margin-top:2rem;
+    }
 `
 const SmallImage = styled.svg`
     width:1rem;
@@ -39,6 +58,7 @@ const SmallImage = styled.svg`
 const Data = styled.div`
     display:grid;
     grid-template-columns: 50% 50%;
+    margin-left:20px;
 `
 const Left = styled.div `
 
@@ -54,24 +74,33 @@ const Text = styled.span`
     font-size:1rem;
 `
 const BorderCountries = styled.div`
-    margin-top:10%;
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
-    grid-auto-rows:40px;
+    margin-top:5%;
+    display:flex;
+    flex-wrap:wrap;
+    flex-direction:row;
 `
 const Country = styled(Link)`
-    display:block;
     color:${props=>props.theme.textColor};
     background-color:${props=>props.theme.firstBgColor};
-    width:100px;
-    height:30px;
+    width:150px;
+    height:3rem;
     text-align:center;
-    margin-left:20px;
     display:flex;
     align-items:center;
     justify-content:center;
     box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.1);
     border-radius:3px;
+    margin-top:1rem;
+    margin-left:20px;
+`
+const FlexHeader = styled(Header)`
+    width:150px;
+    height:3rem;
+    margin-top:1rem;
+    margin-left:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 `
 
 export default function CountryDetails(props)
@@ -109,7 +138,7 @@ export default function CountryDetails(props)
                         </Right>
                     </Data>
                     <BorderCountries>
-                        <Header>Border Countries:</Header>
+                        <FlexHeader>Border Countries:</FlexHeader>
                         {item.borders.map((el)=>{
                                 const object = props.countries.find((item)=>item.alpha3Code===el);
                                 return (

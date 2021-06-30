@@ -6,13 +6,17 @@ import SearchBar from '../searchbar/SearchBar';
 import CountryDetails from "../country/CountryDetails";
 
 const CountryContainer = styled.div`
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
+    width:95%;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
 `
 const StyledLink = styled(Link)`
     width:fit-content;
-    margin-left:auto;
-    margin-right:auto;
+    margin-left:1%;
+    margin-right:1%;
 `
 export function Countries(props)
 {
