@@ -23,6 +23,7 @@ export function Countries(props)
         {
             setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(query.toLowerCase())));
             props.setQuery(query);
+            props.setOption(option);
         }
     }
     useEffect(()=>{
