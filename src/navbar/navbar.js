@@ -21,6 +21,10 @@ const Nav = styled.div`
 const Title = styled.p`
     font-size:1.5rem;
     font-weight:bold;
+    @media (max-width:400px)
+    {
+        font-size:1.3rem;
+    }
 `
 const Mode = styled.button`
     position:relative;
@@ -36,6 +40,10 @@ const Image = styled.img`
     position:absolute;
     top:0.25rem;
     left:-1.5rem;
+    @media (max-width:400px)
+    {
+        left:-1.2rem;
+    }
 `
 
 export default function Navbar(props)

@@ -13,6 +13,12 @@ const Container = styled.div`
     {
         padding:0 10px;
     }
+    @media (max-width:400px)
+    {
+        flex-direction:column;
+        justify-content:space-around;
+        height:20vh;
+    }
 `
 const Input = styled.input.attrs({
     placeholder:"Search for a country...",
@@ -38,6 +44,10 @@ const InputContainer = styled.div`
     display:flex;
     align-items:center;
     box-shadow: 2px 2px 20px 5px rgba(0,0,0,0.1);
+    @media (max-width:400px)
+    {
+        width:300px;
+    }
 `
 const Image = styled.svg`
     width:10%;
