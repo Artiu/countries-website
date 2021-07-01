@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Country from "../country/Country";
 import SearchBar from '../searchbar/SearchBar';
 import CountryDetails from "../country/CountryDetails";
@@ -50,7 +50,7 @@ export function Countries(props)
         <SearchBar onChange={changeQuery} firstQuery={props.queryValue} firstOption={props.optionValue}/>
         <CountryContainer>
             {countriesToShow.map((item)=>(
-            <StyledLink to={"/country/"+item.name} key={item.name}>
+            <StyledLink to={"country/"+item.name} key={item.name}>
             <Country data={item}/>
             </StyledLink>
             ))}
@@ -83,10 +83,10 @@ export default function Content()
     if(isLoaded)
     {
         return(
-            <Router>
+            <Router basename={process.env.PUBLIC_URL}>
                 <Switch>
-                    <Route exact path="/" component={()=><Countries countries={allCountries} queryValue={queryValue} setQuery = {setQueryValue} optionValue = {optionValue} setOption = {setOptionValue}/>}/>
-                    <Route path="/country/:name" component={()=><CountryDetails countries={allCountries}/>} />
+                    <Route exact path="" component={()=><Countries countries={allCountries} queryValue={queryValue} setQuery = {setQueryValue} optionValue = {optionValue} setOption = {setOptionValue}/>}/>
+                    <Route path="country/:name" component={()=><CountryDetails countries={allCountries}/>} />
                 </Switch>
             </Router>
         )
