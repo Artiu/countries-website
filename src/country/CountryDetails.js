@@ -22,6 +22,10 @@ const StyledLink = styled(Link)`
     margin:3% 0 0 10%;
     box-shadow: 5px 5px 20px 5px rgba(0,0,0,0.26);
     border-radius:3px;
+    @media (max-width:400px)
+    {
+        margin: 3% 0 0 0;
+    }
 `
 const Flag = styled.img`
     width:30%;
@@ -78,6 +82,11 @@ const BorderCountries = styled.div`
     display:flex;
     flex-wrap:wrap;
     flex-direction:row;
+    @media (max-width:400px)
+    {
+        flex-direction:column;
+        align-items:center;
+    }
 `
 const Country = styled(Link)`
     color:${props=>props.theme.textColor};
@@ -92,6 +101,11 @@ const Country = styled(Link)`
     border-radius:3px;
     margin-top:1rem;
     margin-left:20px;
+    @media (max-width:400px)
+    {
+        width:200px;
+        margin-left:0;
+    }
 `
 const FlexHeader = styled(Header)`
     width:150px;
@@ -101,6 +115,11 @@ const FlexHeader = styled(Header)`
     display:flex;
     align-items:center;
     justify-content:center;
+    @media (max-width:400px)
+    {
+        width:200px;
+        margin-left:0;
+    }
 `
 
 export default function CountryDetails(props)
