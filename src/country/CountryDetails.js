@@ -161,7 +161,7 @@ export default function CountryDetails(props)
                         {item.borders.map((el)=>{
                                 const object = props.countries.find((item)=>item.alpha3Code===el);
                                 return (
-                                    <Country to={"country/"+object.name} key={object.name}>{object.name}</Country>
+                                    <Country to={"/country/"+object.name} key={object.name}>{object.name}</Country>
                                 )
                         })}
                     </BorderCountries>
