@@ -42,3 +42,7 @@ Users should be able to:
 
 - Frontend Mentor - [Artiu](https://www.frontendmentor.io/profile/Artiu)
 - Github - [Artiu](https://github.com/Artiu)
+
+Icons made by [Freepik](https://www.freepik.com) from [https://www.flaticon.com/],
+Icons made by [Pixel Perfect](https://www.flaticon.com/authors/pixel-perfect) from [https://www.flaticon.com/],
+Icons made by [Good Ware](https://www.flaticon.com/)
