@@ -158,7 +158,7 @@ export default function CountryDetails(props)
                     </Data>
                     <BorderCountries>
                         <FlexHeader>Border Countries:</FlexHeader>
-                        {item.borders.map((el)=>{
+                        {item.borders?.map((el)=>{
                                 const object = props.countries.find((item)=>item.alpha3Code===el);
                                 return (
                                     <Country to={"/country/"+object.name} key={object.name}>{object.name}</Country>
