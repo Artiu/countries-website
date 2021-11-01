@@ -18,6 +18,10 @@ const StyledLink = styled(Link)`
     margin-left:1%;
     margin-right:1%;
 `
+const Error = styled.p`
+    color: red;
+    font-size: 25px;
+`
 export function Countries(props)
 {
     const [countriesToShow, setToShow] = useState(props.countries);
@@ -44,7 +48,7 @@ export function Countries(props)
         {
             setToShow(props.countries.filter((el)=> el.name.toLowerCase().startsWith(props.queryValue.toLowerCase())));
         }
-    },[props.countries,props.optionValue,props.queryValue])
+    },[props.countries,props.optionValue, props.queryValue])
     return(
     <>
         <SearchBar onChange={changeQuery} firstQuery={props.queryValue} firstOption={props.optionValue}/>
@@ -61,7 +65,8 @@ export function Countries(props)
 export default function Content()
 {
     const [allCountries, setCountries] = useState();
-    const [isLoaded, setStatus] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [error, setError] = useState(null);
     let queryValue = '';
     let optionValue = '';
     const setQueryValue = (value) =>
@@ -73,30 +78,29 @@ export default function Content()
         optionValue = value;
     }
     useEffect(()=>{
-        fetch("https://restcountries.eu/rest/v2/all")
+        fetch("https://restcountries.com/v2/all")
         .then((response)=>response.json())
         .then((res)=>{
             setCountries(res);
-            setStatus(true);
         })
+        .catch(err => {
+            setError(err.message);
+        })
+        .finally(() => setIsLoaded(true))
     },[]);
-    if(isLoaded)
-    {
-        return(
-            <Router basename={process.env.PUBLIC_URL}>
-                <Switch>
-                    <Route exact path="/" component={()=><Countries countries={allCountries} queryValue={queryValue} setQuery = {setQueryValue} optionValue = {optionValue} setOption = {setOptionValue}/>}/>
-                    <Route path="/country/:name" component={()=><CountryDetails countries={allCountries}/>} />
-                </Switch>
-            </Router>
-        )
+    if(error) {
+        return <Error>{error}</Error>
     }
-    else
+    if(!isLoaded)
     {
-        return (
-            <>
-                <h1>Loading.....</h1>
-            </>
-        )
+        return <h1>Loading.....</h1>
     }
+    return(
+        <Router basename={process.env.PUBLIC_URL}>
+            <Switch>
+                <Route exact path="/" component={()=><Countries countries={allCountries} queryValue={queryValue} setQuery = {setQueryValue} optionValue = {optionValue} setOption = {setOptionValue}/>}/>
+                <Route path="/country/:name" component={()=><CountryDetails countries={allCountries}/>} />
+            </Switch>
+        </Router>
+    )
 }
