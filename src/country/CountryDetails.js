@@ -152,8 +152,8 @@ export default function CountryDetails(props)
                         </Left>
                         <Right>
                             <Header>Top Level Domain: <Text>{item.topLevelDomain}</Text></Header>
-                            <Header>Currencies: <Text>{item.currencies.map((el)=>el.name).join(', ')}</Text></Header>
-                            <Header>Languages: <Text>{item.languages.map((el)=>el.name).join(', ')}</Text></Header>
+                            <Header>Currencies: <Text>{item.currencies?.map((el)=>el.name).join(', ')}</Text></Header>
+                            <Header>Languages: <Text>{item.languages?.map((el)=>el.name).join(', ')}</Text></Header>
                         </Right>
                     </Data>
                     <BorderCountries>
